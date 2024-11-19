@@ -7,6 +7,8 @@ import { Speaker } from "@/components/speakers";
 import { Introduction } from "@/components/Introduction";
 import { Contact } from "@/components/Contact";
 import { Footer } from "@/components/Footer";
+import 'core-js/stable'; // Polyfills for ES6+ features
+import 'regenerator-runtime/runtime'; 
 export default function Home() {
   return (
     <div>
