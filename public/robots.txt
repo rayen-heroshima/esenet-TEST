@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://esenet-jobfair2024.vercel.app/
+
+# Sitemaps
+Sitemap: https://esenet-jobfair2024.vercel.app/sitemap.xml
