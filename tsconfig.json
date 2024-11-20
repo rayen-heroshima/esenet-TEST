@@ -29,5 +29,11 @@
     "next-sitemap.config.js"
   ],
   "exclude": ["node_modules"],
-  "typeRoots": ["node_modules/@types", "src/types"]
+  "typeRoots": ["node_modules/@types", "src/types"],
+  "strict": true, // or other appropriate options for your project
+  "esModuleInterop": true,
+  "include": [
+  "src/**/*",
+  "global.d.ts"
+],
 }

@@ -8,10 +8,12 @@ import "core-js/stable"; // Polyfill for modern JavaScript features
 const Polyfills = () => {
   useEffect(() => {
     if (!window.Promise) {
-      import('core-js/features/promise');
+      // eslint-disable-next-line @typescript-eslint/no-require-imports
+      require('core-js/features/promise');
     }
     if (!window.fetch) {
-      import('whatwg-fetch');
+      // eslint-disable-next-line @typescript-eslint/no-require-imports
+      require('whatwg-fetch');
     }
   }, []);
 
