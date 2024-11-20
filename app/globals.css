@@ -71,3 +71,20 @@
 
  
 }
+/* Ajoutez ce code dans votre fichier CSS global (styles/globals.css) */
+button {
+  -webkit-transition: all 0.3s ease;  /* Préfixe pour Safari */
+  transition: all 0.3s ease;
+}
+
+.grid-container {
+  display: -webkit-flex;  /* Préfixe pour Safari */
+  display: flex;
+  -webkit-align-items: center;  /* Préfixe pour Safari */
+  align-items: center;
+}
+
+.box {
+  -webkit-box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);  /* Préfixe pour Safari */
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}

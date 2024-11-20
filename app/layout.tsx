@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
+import Polyfills from "@/components/Pollyfills";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -15,7 +16,8 @@ const geistMono = localFont({
 
 export const metadata: Metadata = {
   title: "ESENet Job Fair 2024 - Connecting Talent with Opportunity",
-  description: "Rejoignez-nous à l'ESENet Job Fair 2024 #1 Événement de réseautage, des présentations d'entreprises et des panels de conférenciers. Connectez-vous avec des leaders de l'industrie et trouvez votre prochaine opportunité de carrière. Organisé par l'ESEN, Université de Manouba.",
+  description:
+    "Rejoignez-nous à l'ESENet Job Fair 2024 #1 Événement de réseautage, des présentations d'entreprises et des panels de conférenciers. Connectez-vous avec des leaders de l'industrie et trouvez votre prochaine opportunité de carrière. Organisé par l'ESEN, Université de Manouba.",
   keywords: [
     "ESENet 2024",
     "EseNet",
@@ -27,7 +29,6 @@ export const metadata: Metadata = {
     "ESEN Manouba Université",
     "Université de Manouba",
     "Job Fair 2024",
-    
   ],
   robots: "index, follow",
   openGraph: {
@@ -43,10 +44,7 @@ export const metadata: Metadata = {
       },
     ],
   },
-  
-        
 };
-
 
 export default function RootLayout({
   children,
@@ -55,9 +53,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+        <Polyfills />
         {children}
       </body>
     </html>
