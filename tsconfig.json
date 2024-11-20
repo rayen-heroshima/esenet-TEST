@@ -1,6 +1,10 @@
 {
   "compilerOptions": {
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
@@ -18,22 +22,23 @@
       }
     ],
     "paths": {
-      "@/*": ["./*"]
+      "@/*": [
+        "./*"
+      ]
     }
   },
   "include": [
-    "next-env.d.ts",
-    "**/*.ts",
-    "**/*.tsx",
-    ".next/types/**/*.ts",
-    "next-sitemap.config.js"
+    "src/**/*",
+    "global.d.ts",
+    ".next/types/**/*.ts"
   ],
-  "exclude": ["node_modules"],
-  "typeRoots": ["node_modules/@types", "src/types"],
+  "exclude": [
+    "node_modules"
+  ],
+  "typeRoots": [
+    "node_modules/@types",
+    "src/types"
+  ],
   "strict": true, // or other appropriate options for your project
-  "esModuleInterop": true,
-  "include": [
-  "src/**/*",
-  "global.d.ts"
-],
+  "esModuleInterop": true
 }
