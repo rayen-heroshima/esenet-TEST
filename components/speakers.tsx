@@ -1,7 +1,8 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import Image from 'next/image';
+import Image from "next/image";
+
 interface Testimonial {
   quote: string;
   name: string;
@@ -99,7 +100,6 @@ const testimonials: Testimonial[] = [
 export function Speaker() {
   const containerRef = useRef<HTMLDivElement>(null);
 
-  // Optimized auto-scroll
   useEffect(() => {
     const scrollContainer = containerRef.current;
     let animationFrame: number | null = null;
@@ -112,7 +112,7 @@ export function Speaker() {
         ) {
           scrollContainer.scrollLeft = 0;
         } else {
-          scrollContainer.scrollLeft += 1; // Adjust step size for smoother or faster scrolling
+          scrollContainer.scrollLeft += 1;
         }
         animationFrame = requestAnimationFrame(scrollStep);
       };
@@ -136,27 +136,27 @@ export function Speaker() {
         <div className="flex w-max gap-6">
           {testimonials.map(({ src, name, designation }, idx) => (
             <div
-            key={idx}
-            className="flex-shrink-0 min-w-[200px] max-w-[250px] flex flex-col items-center gap-4"
-          >
-            {/* Image circulaire */}
-            <div className="w-32 h-32 relative overflow-hidden rounded-full shadow-lg">
-  <Image
-    src={src}
-    alt={name}
-    fill
-    style={{ objectFit: "cover" }} // Ensures the image scales correctly
-    priority={false} // Allows lazy loading by default
-  />
-</div>
-            
-            {/* Nom et désignation */}
-            <div className="text-center">
-              <p className="text-lg font-semibold">{name}</p>
-              <p className="text-sm text-gray-600 whitespace-pre-line">{designation}</p>
+              key={idx}
+              className="flex-shrink-0 min-w-[200px] max-w-[250px] flex flex-col items-center gap-4"
+            >
+              {/* Image circulaire */}
+              <div className="w-32 h-32 relative overflow-hidden rounded-full shadow-lg">
+                <Image
+                  src={src}
+                  alt={name}
+                  fill
+                  style={{
+                    objectFit: "cover",
+                  }}
+                />
+              </div>
+
+              {/* Nom et désignation */}
+              <div className="text-center">
+                <p className="text-lg font-semibold">{name}</p>
+                <p className="text-sm text-gray-600 whitespace-pre-line">{designation}</p>
+              </div>
             </div>
-          </div>
-          
           ))}
         </div>
       </div>

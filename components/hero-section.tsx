@@ -44,27 +44,29 @@ const Countdown: React.FC = () => {
 
   // Cache the timeLeft in localStorage or sessionStorage
   useEffect(() => {
-    const cachedTimeLeft = localStorage.getItem("timeLeft");
+    if (typeof localStorage !== "undefined") {
+      const cachedTimeLeft = localStorage.getItem("timeLeft");
 
-    if (cachedTimeLeft) {
-      setTimeLeft(JSON.parse(cachedTimeLeft)); // Load from cache if available
-    } else {
-      const calculatedTimeLeft = calculateTimeLeft();
-      if (calculatedTimeLeft) {
-        setTimeLeft(calculatedTimeLeft);
-        localStorage.setItem("timeLeft", JSON.stringify(calculatedTimeLeft)); // Save to cache
+      if (cachedTimeLeft) {
+        setTimeLeft(JSON.parse(cachedTimeLeft)); // Load from cache if available
+      } else {
+        const calculatedTimeLeft = calculateTimeLeft();
+        if (calculatedTimeLeft) {
+          setTimeLeft(calculatedTimeLeft);
+          localStorage.setItem("timeLeft", JSON.stringify(calculatedTimeLeft)); // Save to cache
+        }
       }
+
+      const timer = setInterval(() => {
+        const newTimeLeft = calculateTimeLeft();
+        if (newTimeLeft) {
+          setTimeLeft(newTimeLeft);
+          localStorage.setItem("timeLeft", JSON.stringify(newTimeLeft)); // Update cache every second
+        }
+      }, 1100);
+
+      return () => clearInterval(timer);
     }
-
-    const timer = setInterval(() => {
-      const newTimeLeft = calculateTimeLeft();
-      if (newTimeLeft) {
-        setTimeLeft(newTimeLeft);
-        localStorage.setItem("timeLeft", JSON.stringify(newTimeLeft)); // Update cache every second
-      }
-    }, 1100);
-
-    return () => clearInterval(timer);
   }, []);
 
   if (!timeLeft) {
@@ -103,14 +105,14 @@ const ImagesSliderDemo: React.FC<{ className?: string }> = ({ className }) => {
   }, [images.length]);
 
   const scrollToBottom = useCallback(() => {
-    window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" });
+    if (typeof window !== "undefined" && document.body) {
+      window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" });
+    }
   }, []);
 
   return (
     <div className={`h-[40rem] backdrop-blur-sm bg-black relative ${className || ""}`}>
       <div className="h-full w-full overflow-hidden relative">
-
-
         {images.map((image, index) => (
           <motion.div
             key={index}
@@ -122,15 +124,14 @@ const ImagesSliderDemo: React.FC<{ className?: string }> = ({ className }) => {
             <Image
               src={image}
               alt={`Slide ${index + 1}`}
-              layout="fill" // Ensures the image covers the parent container, just like object-cover
-              objectFit="cover" // Ensures the image fills the container without distortion
+              layout="fill"
+              objectFit="cover"
               className={`transition-opacity duration-700 ${
                 index === currentImageIndex ? "opacity-100" : "opacity-0"
               }`}
             />
           </motion.div>
         ))}
-
       </div>
 
       <motion.div
@@ -152,10 +153,8 @@ const ImagesSliderDemo: React.FC<{ className?: string }> = ({ className }) => {
 
         <button
           onClick={scrollToBottom}
-          className="
-            px-4 py-2 backdrop-blur-sm border bg-blue-300/10 border-blue-500/20 text-white mx-auto text-center 
-            rounded-full relative mt-4 hover:bg-blue-400/20 transition-all duration-300 hover:scale-105
-          "
+          className="px-4 py-2 backdrop-blur-sm border bg-blue-300/10 border-blue-500/20 text-white mx-auto text-center 
+            rounded-full relative mt-4 hover:bg-blue-400/20 transition-all duration-300 hover:scale-105"
         >
           <span className="text-base">Inscrivez-vous maintenant →</span>
           <div className="absolute inset-x-0 h-px -bottom-px bg-gradient-to-r w-3/4 mx-auto from-transparent via-blue-500 to-transparent" />
