@@ -14,7 +14,13 @@ export default function Home() {
     <div>
       
       <ImagesSliderDemo />
-     
+      <Introduction />
+      <OventExpoBanner />
+      <Speaker />
+      <EventProgram />
+      <HappySponsors />
+      <Contact />
+      <Footer />
     </div>
   );
 }
